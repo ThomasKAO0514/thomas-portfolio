@@ -91,8 +91,8 @@ export default async function ProjectPage({
         {/* Project Specs */}
         {project.slug === "enterprise-rag" && (
           <ProjectSpecs>
-            <MetricCard label="Chunk Size" value="600" description="characters" />
-            <MetricCard label="Overlap" value="2" description="sentences" />
+            <MetricCard label="Chunk Size" value="300" description="characters" />
+            <MetricCard label="Overlap" value="1" description="sentences" />
             <MetricCard label="Embedding" value="BGE-M3" description="BAAI" />
             <MetricCard label="Vector Index" value="FAISS" description="IndexFlatIP" />
             <MetricCard label="Input" value="PDF" description="internal regulations" />
