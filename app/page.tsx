@@ -143,10 +143,11 @@ export default function Home() {
                   "FastAPI",
                   "RAG",
                   "LLM",
-                  "Azure",
+                  "Azure Cloud",
+                  "GCP",
                   "FAISS",
                   "Docker",
-                  "PostgreSQL",
+                  "SQL",
                   "CI/CD",
                   "Web Crawling",
                 ].map((item) => (
@@ -276,10 +277,38 @@ export default function Home() {
                   </p>
 
                   <p className="mt-5 leading-7 text-zinc-400">
-                    Graduate studies in statistics, data analysis and
-                    quantitative methods, providing a foundation for machine
-                    learning and data-driven AI applications.
+                    Graduate studies in statistics, data analysis and quantitative
+                    methods, providing a foundation for machine learning and
+                    data-driven AI applications.
                   </p>
+
+                  {/* Master's Thesis */}
+                  <div className="mt-6">
+                    <p className="mb-2 text-xs uppercase tracking-[0.18em] text-zinc-500">
+                      Master&apos;s Thesis
+                    </p>
+
+                    <p className="font-medium leading-7 text-zinc-200">
+                      Impact of Corporate ESG Performance on Earnings Conference
+                      Calls
+                    </p>
+
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {[
+                        "NLP",
+                        "Text Analysis",
+                        "Data Processing",
+                        "ESG",
+                      ].map((item) => (
+                        <span
+                          key={item}
+                          className="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-500"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Bachelor's */}
