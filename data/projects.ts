@@ -31,7 +31,7 @@ export const projects = [
       "Converted enterprise PDF regulations into structured Markdown using Azure Document Intelligence",
       "Designed page-aware, sentence-aware and table-aware chunking for complex policy documents",
       "Preserved complete tables as standalone chunks to maintain structured information",
-      "Used 600-character chunk targets with two-sentence overlap to preserve neighboring context",
+      "Used 300-character chunk targets with one-sentence overlap to preserve neighboring context",
       "Generated normalized semantic embeddings using BAAI/bge-m3",
       "Built a FAISS IndexFlatIP vector index with 1:1 corpus metadata mapping",
       "Implemented domain routing to narrow queries to relevant regulation groups",
