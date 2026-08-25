@@ -453,7 +453,7 @@ function EnterpriseRagArchitecture() {
         <div className="grid w-full max-w-3xl grid-cols-1 gap-4 md:grid-cols-2">
           <ArchitectureNode
             title="Text Blocks"
-            description="Sentence splitting · 600-char target · 2-sentence overlap"
+            description="Sentence splitting · 300-char target · 1-sentence overlap"
           />
 
           <ArchitectureNode
