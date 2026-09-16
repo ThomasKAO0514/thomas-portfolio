@@ -193,6 +193,32 @@ export default async function ProjectPage({
           </ProjectSpecs>
         )}
 
+        {project.slug === "tipo-knowledge-ingestion" && (
+          <ProjectSpecs>
+            <MetricCard label="Crawler" value="Incremental" description="state-based updates" />
+            <MetricCard label="Concurrency" value="6 Workers" description="parallel state scan" />
+            <MetricCard label="Update Level" value="Row-Level" description="large table support" />
+            <MetricCard label="Documents" value="Multi-Format" description="PDF · Word · Excel · ODF" />
+            <MetricCard label="Output" value="Markdown" description="+ extracted images" />
+            <MetricCard label="Storage" value="Azure Blob" description="standardized content" />
+            <MetricCard label="Chunking" value="Custom API" description="Markdown-aware" />
+            <MetricCard label="Search" value="Azure AI Search" description="Indexer + Skillset" />
+          </ProjectSpecs>
+        )}
+
+        {project.slug === "on-premise-speaker-aware-stt" && (
+          <ProjectSpecs>
+            <MetricCard label="ASR" value="WhisperX" description="speech-to-text" />
+            <MetricCard label="Language" value="Chinese" description="zh" />
+            <MetricCard label="Alignment" value="Timestamp" description="language-aware" />
+            <MetricCard label="Speakers" value="Diarization" description="speaker-aware" />
+            <MetricCard label="Backend" value="FastAPI" description="REST API" />
+            <MetricCard label="Audio" value="16 kHz" description="mono input" />
+            <MetricCard label="Deployment" value="Docker" description="Docker Compose" />
+            <MetricCard label="Environment" value="On-Premise" description="local processing" />
+          </ProjectSpecs>
+        )}
+
         {/* Architecture */}
         <section className="mb-20">
           <p className="mb-8 text-sm uppercase tracking-[0.2em] text-zinc-500">
@@ -207,6 +233,10 @@ export default async function ProjectPage({
             <CrawlerArchitecture />
           ) : project.slug === "enterprise-ai-query-router" ? (
             <QueryRouterArchitecture />
+          ) : project.slug === "tipo-knowledge-ingestion" ? (
+            <TipoKnowledgeIngestionArchitecture />
+          ) : project.slug === "on-premise-speaker-aware-stt" ? (
+            <SttArchitecture />
           ) : (
             <GenericArchitecture architecture={project.architecture} />
           )}
@@ -864,6 +894,149 @@ function CrawlerArchitecture() {
         <ArchitectureNode
           title="Logs & Email Report"
           description="Report REBUILD or NO_CHANGE execution result"
+        />
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   TIPO Knowledge Ingestion
+========================================================= */
+
+function TipoKnowledgeIngestionArchitecture() {
+  return (
+    <div className="rounded-3xl border border-zinc-800 bg-zinc-900/30 p-6 md:p-10">
+      <PipelineSection title="Data Collection" />
+      <div className="flex flex-col items-center">
+        <ArchitectureNode title="TIPO Trademark Website" description="Trademark topic pages · tables · downloadable attachments" />
+        <Arrow />
+        <ArchitectureNode title="Sitemap + Whitelist" description="Restrict crawling and state scanning to configured target nodes" highlight />
+        <Arrow />
+        <ArchitectureNode title="Website State Scan" description="6 parallel workers build the current state of target content" />
+        <Arrow />
+        <ArchitectureNode title="State Comparison" description="Compare previous and current website state to detect changes" highlight />
+        <Arrow />
+        <ArchitectureNode title="Incremental Crawler" description="Process only new or changed pages, rows and attachments" highlight />
+        <Arrow />
+        <ArchitectureNode title="Row-Level Change Detection" description="Compare stable row keys for incremental updates on large tables" />
+      </div>
+
+      <PipelineDivider title="Document Processing" />
+      <div className="flex flex-col items-center">
+        <BranchArrowThree />
+        <div className="grid w-full max-w-4xl grid-cols-1 gap-4 md:grid-cols-3">
+          <ArchitectureNode title="HTML" description="Web page content" />
+          <ArchitectureNode title="PDF" description="Text · tables · images" />
+          <ArchitectureNode title="Office / ODF" description="DOCX · DOC · XLSX · ODT · ODS" />
+        </div>
+        <TripleMergeArrow />
+        <ArchitectureNode title="Format-Specific Parsers" description="pdfplumber · PyMuPDF · python-docx · openpyxl · odfpy · LibreOffice" highlight />
+        <Arrow />
+        <ArchitectureNode title="Structure Reconstruction" description="Preserve headings · paragraphs · tables · images · reading order" />
+        <Arrow />
+        <ArchitectureNode title="Attachment Deduplication" description="Detect equivalent document formats and prefer PDF when available" />
+        <Arrow />
+        <ArchitectureNode title="Markdown + Images" description="Unified representation for downstream indexing" highlight />
+        <Arrow />
+        <ArchitectureNode title="Azure Blob Storage" description="Store standardized documents and extracted assets" highlight />
+      </div>
+
+      <PipelineDivider title="Search Ingestion" />
+      <div className="flex flex-col items-center">
+        <ArchitectureNode title="Azure AI Search Indexer" description="Read standardized Markdown content from Blob Storage" highlight />
+        <Arrow />
+        <ArchitectureNode title="Skillset" description="Define the enrichment and custom processing pipeline" />
+        <Arrow />
+        <ArchitectureNode title="Custom Web API Skill" description="Invoke custom document chunking during indexing" highlight />
+        <Arrow />
+        <ArchitectureNode title="Azure Function App" description="Host the custom chunking API" />
+        <Arrow />
+        <ArchitectureNode title="Custom Chunking API" description="Markdown-aware · table-aware · image-safe · page-aware" highlight />
+        <Arrow />
+        <ArchitectureNode title="Azure AI Search Index" description="Indexed chunks ready for downstream search and retrieval" highlight />
+      </div>
+    </div>
+  );
+}
+
+/* =========================================================
+   On-Premise Speaker-Aware STT
+========================================================= */
+
+function SttArchitecture() {
+  return (
+    <div className="rounded-3xl border border-zinc-800 bg-zinc-900/30 p-6 md:p-10">
+      <PipelineSection title="Audio Processing" />
+
+      <div className="flex flex-col items-center">
+        <ArchitectureNode
+          title="Audio File"
+          description="Local audio file from the mounted input directory"
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="FastAPI"
+          description="REST API entry point and input path validation"
+          highlight
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="Audio Preprocessing"
+          description="librosa · 16 kHz · mono"
+        />
+      </div>
+
+      <PipelineDivider title="Speech Recognition" />
+
+      <div className="flex flex-col items-center">
+        <ArchitectureNode
+          title="WhisperX ASR"
+          description="Speech-to-text transcription"
+          highlight
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="Timestamp Alignment"
+          description="Language-specific alignment for refined timestamps"
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="Speaker Diarization"
+          description="Detect different speaker segments in the audio"
+          highlight
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="Speaker Assignment"
+          description="Assign speaker labels to aligned transcription segments"
+        />
+      </div>
+
+      <PipelineDivider title="Structured Output" />
+
+      <div className="flex flex-col items-center">
+        <ArchitectureNode
+          title="Speaker-Aware Segments"
+          description="Start · end · speaker · text"
+          highlight
+        />
+
+        <Arrow />
+
+        <ArchitectureNode
+          title="Structured JSON"
+          description="REST API response with optional local JSON output"
         />
       </div>
     </div>

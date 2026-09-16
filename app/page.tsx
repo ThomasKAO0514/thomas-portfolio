@@ -433,7 +433,7 @@ export default function Home() {
             {/* Model Adaptation */}
             <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
               <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-                Machine Learning
+                Fine-Tuning & Evaluation
               </p>
 
               <h3 className="mb-4 text-2xl font-semibold">

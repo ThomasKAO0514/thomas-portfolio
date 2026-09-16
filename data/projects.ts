@@ -285,6 +285,127 @@ export const projects = [
     },
   ],
 },
+
+{
+  slug: "tipo-knowledge-ingestion",
+
+  title: "TIPO Knowledge Ingestion Pipeline",
+
+  summary:
+    "An end-to-end knowledge ingestion pipeline for TIPO trademark content, combining incremental crawling, heterogeneous document processing, custom chunking and Azure AI Search indexing.",
+
+  description:
+    "Built a knowledge ingestion pipeline for the Taiwan Intellectual Property Office (TIPO) trademark website, covering data collection, document processing and search ingestion. The system detects website changes through state comparison and performs incremental updates instead of repeatedly crawling the entire site. HTML pages and heterogeneous attachments including PDF, Word, Excel and ODF documents are normalized into Markdown and images before being stored in Azure Blob Storage. Azure AI Search Indexer then executes a Skillset that invokes a custom chunking API deployed on Azure Function App through a Custom Web API Skill. The resulting chunks are written into Azure AI Search Index for downstream keyword search, vector search, hybrid search or RAG applications.",
+
+  problem:
+    "The TIPO trademark website contains heterogeneous content across HTML pages, large tables and multiple attachment formats including PDF, Word, Excel and ODF. Reprocessing the entire website whenever content changes would create unnecessary requests and repeated document processing. Different document structures also make it difficult to produce consistent content suitable for downstream search indexing.",
+
+  solution:
+    "Designed an incremental knowledge ingestion pipeline that compares previous and current website state to process only changed content. Large table pages support row-level change detection using stable row keys, while format-specific parsers normalize heterogeneous documents into Markdown and images. Standardized content is stored in Azure Blob Storage and ingested by Azure AI Search, where a Custom Web API Skill invokes an Azure Function-based chunking API to perform Markdown-aware, table-aware and image-safe document splitting before indexing.",
+
+  tech: [
+    "Python",
+    "BeautifulSoup",
+    "Requests",
+    "pdfplumber",
+    "PyMuPDF",
+    "Azure Blob Storage",
+    "Azure Functions",
+    "Azure AI Search",
+  ],
+
+  architecture: [
+    "TIPO Trademark Website",
+    "Sitemap + Whitelist",
+    "Website State Scan",
+    "State Comparison",
+    "Incremental Crawler",
+    "Row-Level Change Detection",
+    "HTML / PDF / Office / ODF",
+    "Document Processing",
+    "Attachment Deduplication",
+    "Markdown + Images",
+    "Azure Blob Storage",
+    "Azure AI Search Indexer",
+    "Skillset",
+    "Custom Web API Skill",
+    "Azure Function App",
+    "Custom Chunking API",
+    "Azure AI Search Index",
+  ],
+
+  highlights: [
+    "Built an end-to-end knowledge ingestion pipeline from TIPO website content to Azure AI Search Index",
+    "Implemented state-based incremental crawling to process only new or changed website content",
+    "Used six parallel workers to accelerate website state scanning within the configured whitelist scope",
+    "Designed row-level incremental updates for large table pages using stable row keys",
+    "Validated record-count changes against newly detected row keys before updating crawler state",
+    "Normalized HTML, PDF, Word, Excel and ODF content into a unified Markdown and image representation",
+    "Combined pdfplumber and PyMuPDF to extract PDF text, tables, images and positional information",
+    "Excluded text located inside detected table bounding boxes to prevent duplicated PDF content",
+    "Reconstructed document content based on page position to preserve approximate reading order",
+    "Preserved heading, paragraph, table and image order when processing Word and ODF documents",
+    "Converted legacy DOC files to DOCX through LibreOffice Headless before document parsing",
+    "Implemented attachment deduplication across equivalent document formats with PDF preference",
+    "Stored standardized Markdown documents and extracted images in Azure Blob Storage",
+    "Integrated custom document processing into Azure AI Search using Indexer, Skillset and Custom Web API Skill",
+    "Deployed a custom chunking API on Azure Function App",
+    "Designed Markdown-aware chunking with text boundaries, overlap, protected image syntax, table-aware splitting and page metadata",
+  ],
+},
+{
+  slug: "on-premise-speaker-aware-stt",
+
+  title: "On-Premise Speaker-Aware STT API",
+
+  summary:
+    "An on-premise speech-to-text service built with WhisperX, FastAPI and Docker, providing timestamp alignment and speaker-aware transcription for privacy-sensitive enterprise audio.",
+
+  description:
+    "Built an on-premise speech-to-text service for enterprise audio processing. The system uses WhisperX to perform speech recognition, timestamp alignment and speaker diarization, then combines the results into structured speaker-aware transcripts. FastAPI exposes the inference workflow as a REST API, while Docker and Docker Compose provide a reproducible deployment environment. Audio inputs and transcription outputs remain within the local environment, supporting privacy-sensitive enterprise use cases.",
+
+  problem:
+    "Enterprise audio may contain sensitive information that is unsuitable for external cloud transcription services. A local speech processing service was needed to convert audio into structured transcripts while preserving timestamps and identifying different speakers.",
+
+  solution:
+    "Designed a containerized on-premise STT service using WhisperX and FastAPI. Audio is normalized to 16 kHz mono, transcribed by WhisperX, aligned using language-specific alignment models, and processed through speaker diarization. Speaker information is then assigned to transcription segments to produce structured results containing timestamps, speaker labels and recognized text.",
+
+  tech: [
+    "Python",
+    "FastAPI",
+    "WhisperX",
+    "librosa",
+    "Hugging Face",
+    "Docker",
+    "Docker Compose",
+    "On-Premise",
+  ],
+
+  architecture: [
+    "Audio File",
+    "FastAPI",
+    "Input Validation",
+    "Audio Preprocessing",
+    "WhisperX ASR",
+    "Timestamp Alignment",
+    "Speaker Diarization",
+    "Speaker Assignment",
+    "Structured JSON",
+  ],
+
+  highlights: [
+    "Built an on-premise speech-to-text API for privacy-sensitive enterprise audio",
+    "Integrated WhisperX ASR, timestamp alignment and speaker diarization into a single processing pipeline",
+    "Generated structured transcripts containing speaker labels, timestamps and recognized text",
+    "Normalized input audio to 16 kHz mono before model inference",
+    "Preloaded ASR and diarization models at service startup for reuse across requests",
+    "Cached language-specific alignment models to reduce repeated model initialization",
+    "Implemented input path validation to restrict file access to the configured audio directory",
+    "Containerized the service using Docker and Docker Compose",
+    "Persisted Hugging Face model cache and local input/output directories through Docker volumes",
+    "Supported enterprise proxy configuration for restricted network environments",
+  ],
+},
 ];
 
 export function getProjectBySlug(slug: string) {
