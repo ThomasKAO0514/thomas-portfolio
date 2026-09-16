@@ -351,73 +351,37 @@ export default function Home() {
           </h2>
 
           <p className="mb-12 max-w-2xl leading-7 text-zinc-400">
-            My experience covers multiple layers of AI engineering — from
-            model serving and retrieval to model adaptation, backend
-            development and cloud infrastructure.
+            My experience covers the end-to-end AI engineering lifecycle — from
+            data ingestion and retrieval to model adaptation, speech AI, backend
+            services and enterprise deployment.
           </p>
 
           <div className="grid gap-6 md:grid-cols-2">
 
-            {/* Model Serving */}
-            <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
-              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-                LLM Infrastructure
-              </p>
-
-              <h3 className="mb-4 text-2xl font-semibold">
-                Model Serving & GPU Infrastructure
-              </h3>
-
-              <p className="leading-7 text-zinc-400">
-                Experience deploying and evaluating large language models on
-                enterprise GPU infrastructure, with a focus on model serving,
-                inference performance, GPU utilization and privacy-sensitive
-                on-premise environments.
-              </p>
-
-              <div className="mt-auto flex flex-wrap gap-2 pt-7">
-                {[
-                  "NVIDIA H100",
-                  "vLLM",
-                  "Gemma",
-                  "Llama",
-                  "GPU Inference",
-                  "On-Prem",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-
-            {/* Retrieval */}
+            {/* Enterprise RAG */}
             <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
               <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
                 Knowledge Engineering
               </p>
 
               <h3 className="mb-4 text-2xl font-semibold">
-                Retrieval & Knowledge Engineering
+                Enterprise RAG
               </h3>
 
               <p className="leading-7 text-zinc-400">
-                Experience designing document ingestion and retrieval
-                workflows, including document parsing, chunking strategies,
-                embeddings, vector search, metadata filtering and reranking
-                for knowledge-intensive AI applications.
+                Experience building enterprise knowledge retrieval systems,
+                covering document parsing, structure-aware chunking, embeddings,
+                vector search, metadata filtering, reranking and grounded LLM
+                generation.
               </p>
 
               <div className="mt-auto flex flex-wrap gap-2 pt-7">
                 {[
-                  "Chunking",
+                  "RAG",
                   "BGE-M3",
                   "FAISS",
+                  "Chunking",
                   "Vector Search",
-                  "Metadata Filtering",
                   "Reranking",
                 ].map((item) => (
                   <span
@@ -430,31 +394,30 @@ export default function Home() {
               </div>
             </article>
 
-            {/* Model Adaptation */}
+            {/* LLM Fine-Tuning */}
             <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
               <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-                Fine-Tuning & Evaluation
+                Model Adaptation
               </p>
 
               <h3 className="mb-4 text-2xl font-semibold">
-                Model Adaptation & Evaluation
+                LLM Fine-Tuning
               </h3>
 
               <p className="leading-7 text-zinc-400">
-                Experience preparing domain-specific training data,
-                designing labeling workflows and adapting language models
-                using supervised fine-tuning and parameter-efficient
-                techniques, with validation and experiment tracking
-                throughout training.
+                Experience constructing enterprise training datasets, designing
+                labeling workflows and adapting language models with supervised
+                fine-tuning and parameter-efficient techniques for task-specific
+                AI applications.
               </p>
 
               <div className="mt-auto flex flex-wrap gap-2 pt-7">
                 {[
+                  "Gemma",
                   "SFT",
                   "LoRA",
                   "PyTorch",
                   "Hugging Face",
-                  "Dataset Curation",
                   "Evaluation",
                 ].map((item) => (
                   <span
@@ -467,31 +430,136 @@ export default function Home() {
               </div>
             </article>
 
-            {/* Backend */}
+            {/* Knowledge Ingestion */}
             <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
               <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
-                Software Engineering
+                Data & Document Engineering
               </p>
 
               <h3 className="mb-4 text-2xl font-semibold">
-                AI Backend & Cloud Architecture
+                Knowledge Ingestion
               </h3>
 
               <p className="leading-7 text-zinc-400">
-                Experience building backend services and production workflows
-                that connect AI models with enterprise systems, including APIs,
-                event-driven processing, containerized workloads and automated
-                cloud deployment.
+                Experience building data ingestion workflows with incremental
+                crawling, heterogeneous document processing, custom chunking and
+                search indexing for enterprise knowledge systems.
+              </p>
+
+              <div className="mt-auto flex flex-wrap gap-2 pt-7">
+                {[
+                  "Web Crawling",
+                  "Document Parsing",
+                  "Custom Chunking",
+                  "Azure Blob",
+                  "Azure AI Search",
+                  "Incremental Updates",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+
+            {/* Document AI */}
+            <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                Workflow Automation
+              </p>
+
+              <h3 className="mb-4 text-2xl font-semibold">
+                Document AI & Automation
+              </h3>
+
+              <p className="leading-7 text-zinc-400">
+                Experience automating enterprise document workflows with
+                event-driven processing, document intelligence, LLM
+                summarization and integration with internal enterprise systems.
+              </p>
+
+              <div className="mt-auto flex flex-wrap gap-2 pt-7">
+                {[
+                  "Azure DI",
+                  "Azure OpenAI",
+                  "Event Grid",
+                  "FastAPI",
+                  "SharePoint",
+                  "Event-Driven",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+
+            {/* Speech AI */}
+            <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                Speech AI
+              </p>
+
+              <h3 className="mb-4 text-2xl font-semibold">
+                Speech AI & On-Premise
+              </h3>
+
+              <p className="leading-7 text-zinc-400">
+                Experience building local speech-to-text services with speech
+                recognition, timestamp alignment and speaker diarization for
+                privacy-sensitive enterprise audio processing.
+              </p>
+
+              <div className="mt-auto flex flex-wrap gap-2 pt-7">
+                {[
+                  "WhisperX",
+                  "Speech-to-Text",
+                  "Alignment",
+                  "Diarization",
+                  "FastAPI",
+                  "On-Prem",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-zinc-800 px-3 py-1 text-xs text-zinc-400"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+
+            {/* AI Backend & Deployment */}
+            <article className="flex h-full flex-col rounded-2xl border border-zinc-800 bg-zinc-900/30 p-7 transition duration-300 hover:-translate-y-1 hover:border-zinc-600">
+              <p className="mb-3 text-xs uppercase tracking-[0.2em] text-zinc-500">
+                AI Infrastructure
+              </p>
+
+              <h3 className="mb-4 text-2xl font-semibold">
+                AI Backend & Deployment
+              </h3>
+
+              <p className="leading-7 text-zinc-400">
+                Experience building AI backend services and deploying
+                containerized workloads across cloud and on-premise
+                environments, including model serving on enterprise GPU
+                infrastructure.
               </p>
 
               <div className="mt-auto flex flex-wrap gap-2 pt-7">
                 {[
                   "FastAPI",
-                  "Azure",
                   "Docker",
+                  "Azure",
                   "CI/CD",
-                  "Event Grid",
-                  "Container Apps",
+                  "vLLM",
+                  "NVIDIA H100",
                 ].map((item) => (
                   <span
                     key={item}
